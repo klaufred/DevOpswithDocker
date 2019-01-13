@@ -1,0 +1,26 @@
+version: '3.5'  
+
+services: 
+    frontend: 
+      image: teht5
+      ports: 
+        - 5000:5000 
+      environment:
+        - API_URL=http://localhost:8000
+      container_name: frontend
+
+    backend: 
+      image: teht6
+      ports: 
+        - 8000:8000 
+      environment:
+        - FRONT_URL=http://localhost:5000
+        - REDIS=redis
+      volumes:
+        - ./backend/logs.txt:/app/logs.txt
+      container_name: backend
+
+    redis:
+      image: redis
+      ports:
+        - 6379:6379

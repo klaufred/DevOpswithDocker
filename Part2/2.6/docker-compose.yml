@@ -1,0 +1,49 @@
+version: '3.5'  
+
+services: 
+    frontend: 
+      image: teht5
+      ports: 
+        - 5000:5000 
+      environment:
+        - API_URL=http://localhost:8000
+      container_name: frontend
+      depends_on:
+      - backend
+
+    backend: 
+      image: teht6
+      ports: 
+        - 8000:8000 
+      environment:
+        - FRONT_URL=http://localhost:5000
+        - REDIS=redis
+        - DB_USERNAME=foo
+        - DB_PASSWORD=bar
+        - DB_NAME=test
+        - DB_HOST=db
+      volumes:
+        - ./backend/logs.txt:/app/logs.txt
+      container_name: backend
+      depends_on:
+        - redis
+        - db
+
+    redis:
+      image: redis
+      ports:
+        - 6379:6379
+      volumes:
+        - ./data/redis:/data
+
+    db:
+      image: postgres
+      restart: always
+      environment:
+        - POSTGRES_USER=foo
+        - POSTGRES_PASSWORD=bar
+        - POSTGRES_DB=test  
+      ports:
+        - 5432:5432
+      volumes:
+        - ./data/postgres:/var/lib/postgresql/data

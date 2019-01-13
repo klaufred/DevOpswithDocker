@@ -1,0 +1,2 @@
+docker build -t teht5 .
+docker run -p 5000:5000 teht5:latest

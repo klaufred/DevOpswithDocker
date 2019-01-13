@@ -1,0 +1,16 @@
+DevOpswithDocker$ docker run -d -it --name teht1.3 ubuntu:16.04 sh -c 'read website; sleep 3; curl http://$website;'
+
+DevOpswithDocker$ docker exec -it teht1.3 bash 
+root@1b196a72c7a7:/# apt-get update
+
+root@1b196a72c7a7:/# apt install curl
+
+DevOpswithDocker$ docker attach teht1.3
+helsinki.fi
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<html><head>
+<title>301 Moved Permanently</title>
+</head><body>
+<h1>Moved Permanently</h1>
+<p>The document has moved <a href="http://www.helsinki.fi/">here</a>.</p>
+</body></html>

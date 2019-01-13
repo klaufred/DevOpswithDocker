@@ -1,0 +1,2 @@
+An Ubuntu image containing curl,JRE,JDK,nano,maven,git,JUnit
+Found at https://hub.docker.com/r/ajaxthegreat/java-workbench
